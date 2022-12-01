@@ -30,6 +30,7 @@
 #include <range/v3/view/transform.hpp>
 
 using namespace std;
+using namespace solidity::util;
 using namespace solidity::langutil;
 using namespace solidity::frontend;
 
@@ -291,6 +292,16 @@ void DeclarationTypeChecker::endVisit(ArrayTypeName const& _typeName)
 
 	if (Expression const* length = _typeName.length())
 	{
+		if (auto literal = dynamic_cast<Literal const*>(length))
+		{
+			if (!holds_alternative<Literal::SubDenomination>(literal->suffix()))
+				m_errorReporter.typeError(
+					4127_error,
+					literal->location(),
+					"Array length cannot contain a suffix function."
+				);
+		}
+
 		optional<rational> lengthValue;
 		if (length->annotation().type && length->annotation().type->category() == Type::Category::RationalNumber)
 			lengthValue = dynamic_cast<RationalNumberType const&>(*length->annotation().type).value();

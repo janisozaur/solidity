@@ -6,12 +6,12 @@ function stringSuffix(uint x) pure returns (string memory) {}
 function bytesSuffix(uint x) pure returns (bytes memory) {}
 
 contract C {
-    uint[42 uintSuffix] a;     // TODO: This should be an error too
-    uint[42 int8Suffix] b;     // TODO: This should be an error too
-    uint[42 addressSuffix] c;  // TODO: This should be an error too
-    uint[42 decimalSuffix] d;  // TODO: This should be an error too
-    uint[42 stringSuffix] e;   // TODO: This should be an error too
-    uint[42 bytesSuffix] f;    // TODO: This should be an error too
+    uint[42 uintSuffix] a;
+    uint[42 int8Suffix] b;
+    uint[42 addressSuffix] c;
+    uint[42 decimalSuffix] d;
+    uint[42 stringSuffix] e;
+    uint[42 bytesSuffix] f;
 }
 
 contract D {
@@ -23,9 +23,15 @@ contract D {
     uint[bytesSuffix(42)] f;
 }
 // ----
-// TypeError 5462: (790-804): Invalid array length, expected integer literal or constant expression.
-// TypeError 5462: (818-832): Invalid array length, expected integer literal or constant expression.
-// TypeError 5462: (846-863): Invalid array length, expected integer literal or constant expression.
-// TypeError 5462: (877-894): Invalid array length, expected integer literal or constant expression.
-// TypeError 5462: (908-924): Invalid array length, expected integer literal or constant expression.
-// TypeError 5462: (938-953): Invalid array length, expected integer literal or constant expression.
+// TypeError 4127: (366-379): Array length cannot contain a suffix function.
+// TypeError 4127: (393-406): Array length cannot contain a suffix function.
+// TypeError 4127: (420-436): Array length cannot contain a suffix function.
+// TypeError 4127: (450-466): Array length cannot contain a suffix function.
+// TypeError 4127: (480-495): Array length cannot contain a suffix function.
+// TypeError 4127: (509-523): Array length cannot contain a suffix function.
+// TypeError 5462: (553-567): Invalid array length, expected integer literal or constant expression.
+// TypeError 5462: (581-595): Invalid array length, expected integer literal or constant expression.
+// TypeError 5462: (609-626): Invalid array length, expected integer literal or constant expression.
+// TypeError 5462: (640-657): Invalid array length, expected integer literal or constant expression.
+// TypeError 5462: (671-687): Invalid array length, expected integer literal or constant expression.
+// TypeError 5462: (701-716): Invalid array length, expected integer literal or constant expression.
